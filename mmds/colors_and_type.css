@@ -1,0 +1,781 @@
+/* ============================================================
+   MetaMask Design System — Colors, Type, Spacing, Shadow, Radii
+   Source of truth: metamask-design-system/packages/design-tokens
+     • brand-colors.css
+     • dark-theme-colors.css  (default)
+     • light-theme-colors.css
+     • typography.css
+     • shadow.css
+
+   Dark is default. Set [data-theme="light"] on <html> to flip.
+   ============================================================ */
+
+/* ─────────────────────────────────────────────
+   BRAND FONTS — MMSans (default UI), MMPoly (hero),
+   MMSansMono (code). OTF files live in /fonts.
+   ───────────────────────────────────────────── */
+/* Geist — primary UI face (mobile app). Loaded from Google Fonts. */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&family=Geist+Mono:wght@400;500&display=swap');
+
+@font-face {
+  font-family: 'MMSans';
+  src: url('fonts/MM_Sans-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'MMSans';
+  src: url('fonts/MM_Sans-Medium.otf') format('opentype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'MMSans';
+  src: url('fonts/MM_Sans-Semibold.otf') format('opentype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'MMSans';
+  src: url('fonts/MM_Sans-Bold.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'MMSans';
+  src: url('fonts/MM_Sans-Extrabold.otf') format('opentype');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'MMSans';
+  src: url('fonts/MM_Sans-Black.otf') format('opentype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'MMPoly';
+  src: url('fonts/MM_Poly-Regular.otf') format('opentype'),
+       url('./fonts/MM_Poly-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'MMSansMono';
+  src: url('fonts/MM_Sans_Mono-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+/* ─────────────────────────────────────────────
+   BRAND COLORS — primitive palette
+   Do not use directly in components. Use the
+   semantic --color-* tokens below.
+   ───────────────────────────────────────────── */
+:root {
+  /* Grey */
+  --brand-colors-grey-grey000: #ffffff;
+  --brand-colors-grey-grey025: #f7f9fc;
+  --brand-colors-grey-grey050: #f3f3f4;
+  --brand-colors-grey-grey100: #ededed;
+  --brand-colors-grey-grey200: #babbbe;
+  --brand-colors-grey-grey300: #a3a4a7;
+  --brand-colors-grey-grey400: #949596;
+  --brand-colors-grey-grey500: #66676a;
+  --brand-colors-grey-grey600: #47484a;
+  --brand-colors-grey-grey700: #252628;
+  --brand-colors-grey-grey800: #1c1d1f;
+  --brand-colors-grey-grey900: #131416;
+  --brand-colors-grey-grey1000: #0c0d0f;
+
+  /* Blue */
+  --brand-colors-blue-blue025: #f8f9ff;
+  --brand-colors-blue-blue050: #f4f5ff;
+  --brand-colors-blue-blue100: #d6dbff;
+  --brand-colors-blue-blue200: #adb6fe;
+  --brand-colors-blue-blue300: #8b99ff;
+  --brand-colors-blue-blue400: #6f7eff;
+  --brand-colors-blue-blue500: #4459ff;
+  --brand-colors-blue-blue600: #2c3dc5;
+  --brand-colors-blue-blue700: #1c277f;
+  --brand-colors-blue-blue800: #131b59;
+  --brand-colors-blue-blue900: #0b0f32;
+
+  /* MetaMask Classic Blue — the canonical brand primary.
+     `classic` is the light-theme primary (#0376c9), `sky` is the dark-theme
+     primary (#43aefc). The generic blue-* ramp above is the secondary /
+     illustrative blue from @metamask/design-tokens brand-colors.css. */
+  --brand-colors-classic-blue-050:  #e5f2fb;
+  --brand-colors-classic-blue-100:  #b8d9f4;
+  --brand-colors-classic-blue-200:  #8abfec;
+  --brand-colors-classic-blue-300:  #5ca6e5;
+  --brand-colors-classic-blue-400:  #2e8cdd;
+  --brand-colors-classic-blue-500:  #0376c9;  /* Light primary */
+  --brand-colors-classic-blue-600:  #025e9f;
+  --brand-colors-classic-blue-700:  #024676;
+  --brand-colors-classic-blue-800:  #012e4d;
+  --brand-colors-classic-blue-900:  #011626;
+
+  --brand-colors-sky-blue-050:      #e4f3ff;
+  --brand-colors-sky-blue-100:      #c2e3ff;
+  --brand-colors-sky-blue-200:      #9ed1fe;
+  --brand-colors-sky-blue-300:      #71c0fd;
+  --brand-colors-sky-blue-400:      #43aefc;  /* Dark primary */
+  --brand-colors-sky-blue-500:      #2296ec;
+  --brand-colors-sky-blue-600:      #1577bd;
+  --brand-colors-sky-blue-700:      #0f598d;
+  --brand-colors-sky-blue-800:      #093b5e;
+  --brand-colors-sky-blue-900:      #041d30;
+
+  /* Red */
+  --brand-colors-red-red025: #fff6f7;
+  --brand-colors-red-red050: #fff2f3;
+  --brand-colors-red-red100: #ffd2d5;
+  --brand-colors-red-red200: #ffa1aa;
+  --brand-colors-red-red300: #ff7584;
+  --brand-colors-red-red400: #f74d5e;
+  --brand-colors-red-red500: #ca3542;
+  --brand-colors-red-red600: #952731;
+  --brand-colors-red-red700: #611a20;
+  --brand-colors-red-red800: #431216;
+  --brand-colors-red-red900: #3b0f13;
+
+  /* Yellow */
+  --brand-colors-yellow-yellow025: #fff9e6;
+  --brand-colors-yellow-yellow050: #fff5d5;
+  --brand-colors-yellow-yellow100: #ffd957;
+  --brand-colors-yellow-yellow200: #f0b034;
+  --brand-colors-yellow-yellow300: #e18f01;
+  --brand-colors-yellow-yellow400: #c37b02;
+  --brand-colors-yellow-yellow500: #9a6300;
+  --brand-colors-yellow-yellow600: #714802;
+  --brand-colors-yellow-yellow700: #482d01;
+  --brand-colors-yellow-yellow800: #321f00;
+  --brand-colors-yellow-yellow900: #1c1100;
+
+  /* Orange */
+  --brand-colors-orange-orange025: #fff8f5;
+  --brand-colors-orange-orange050: #fff0ea;
+  --brand-colors-orange-orange100: #ffd4c1;
+  --brand-colors-orange-orange200: #ffa680;
+  --brand-colors-orange-orange300: #ff7940;
+  --brand-colors-orange-orange400: #ff5c16;
+  --brand-colors-orange-orange500: #c3420d;
+  --brand-colors-orange-orange600: #932d06;
+  --brand-colors-orange-orange700: #661800;
+  --brand-colors-orange-orange800: #451100;
+  --brand-colors-orange-orange900: #280a00;
+
+  /* Purple */
+  --brand-colors-purple-purple025: #fcf6ff;
+  --brand-colors-purple-purple050: #fbf2ff;
+  --brand-colors-purple-purple100: #eac2ff;
+  --brand-colors-purple-purple200: #dfa4ff;
+  --brand-colors-purple-purple300: #d075ff;
+  --brand-colors-purple-purple400: #b864f5;
+  --brand-colors-purple-purple500: #8f44e4;
+  --brand-colors-purple-purple600: #6c2ab2;
+  --brand-colors-purple-purple700: #6c2ab2;
+  --brand-colors-purple-purple800: #3d065f;
+  --brand-colors-purple-purple900: #280a00;
+
+  /* Lime */
+  --brand-colors-lime-lime025: #effed9;
+  --brand-colors-lime-lime050: #e5ffc3;
+  --brand-colors-lime-lime100: #baf24a;
+  --brand-colors-lime-lime200: #95ca45;
+  --brand-colors-lime-lime300: #7ab040;
+  --brand-colors-lime-lime400: #64993d;
+  --brand-colors-lime-lime500: #457a39;
+  --brand-colors-lime-lime600: #275b35;
+  --brand-colors-lime-lime700: #013330;
+  --brand-colors-lime-lime800: #012826;
+  --brand-colors-lime-lime900: #011515;
+
+  /* Green */
+  --brand-colors-green-green025: #f1faf4;
+  --brand-colors-green-green050: #ebf7ee;
+  --brand-colors-green-green100: #c1e6c9;
+  --brand-colors-green-green200: #80cb91;
+  --brand-colors-green-green300: #4cb564;
+  --brand-colors-green-green400: #279f41;
+  --brand-colors-green-green500: #1c7e33;
+  --brand-colors-green-green600: #145d25;
+  --brand-colors-green-green700: #0d3b18;
+  --brand-colors-green-green800: #092912;
+  --brand-colors-green-green900: #051709;
+
+  /* Indigo */
+  --brand-colors-indigo-indigo025: #f3faff;
+  --brand-colors-indigo-indigo050: #ebf5ff;
+  --brand-colors-indigo-indigo100: #cce7ff;
+  --brand-colors-indigo-indigo200: #89b0ff;
+  --brand-colors-indigo-indigo300: #7e9ff0;
+  --brand-colors-indigo-indigo400: #6f87db;
+  --brand-colors-indigo-indigo500: #5b66bf;
+  --brand-colors-indigo-indigo600: #4544a1;
+  --brand-colors-indigo-indigo700: #2e2082;
+  --brand-colors-indigo-indigo800: #190066;
+  --brand-colors-indigo-indigo900: #13004a;
+
+  --brand-colors-white: #ffffff;
+  --brand-colors-black: #000000;
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY PRIMITIVES — font families,
+   size/line-height/weight/letter-spacing scales
+   ───────────────────────────────────────────── */
+:root {
+  /* Mobile app: Geist is the primary UI face.
+     MMSans / MMPoly are brand faces for marketing + hero moments only. */
+  --font-family-default: 'Geist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-family-accent:  'MMSans', 'Geist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-family-hero:    'MMPoly', 'Geist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-family-mono:    'Geist Mono', 'MMSansMono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --font-size-base: 16px;
+  --font-size-1: 0.625rem;   /* 10 */
+  --font-size-2: 0.75rem;    /* 12 */
+  --font-size-3: 0.875rem;   /* 14 */
+  --font-size-4: 1rem;       /* 16 */
+  --font-size-4-5: 1.125rem; /* 18 — heading-md on mobile */
+  --font-size-5: 1.25rem;    /* 20 */
+  --font-size-6: 1.5rem;     /* 24 */
+  --font-size-7: 2rem;       /* 32 */
+  --font-size-8: 2.5rem;     /* 40 */
+  --font-size-9: 3rem;       /* 48 */
+  --font-size-10: 3.75rem;   /* 60 */
+
+  --line-height-1: 1rem;       /* 16 */
+  --line-height-2: 1.25rem;    /* 20 */
+  --line-height-3: 1.375rem;   /* 22 */
+  --line-height-4: 1.5rem;     /* 24 */
+  --line-height-5: 2rem;       /* 32 */
+  --line-height-6: 2.5rem;     /* 40 */
+  --line-height-7: 3.125rem;   /* 50 */
+  --line-height-8: 3.5rem;     /* 56 */
+  --line-height-9: 4.6875rem;  /* 75 */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  --letter-spacing-0: 0;
+  --letter-spacing-1: 2.5%;
+}
+
+/* Active typography scale — defaults to Small (mobile / extension) */
+:root {
+  --typography-display-lg-font-size:      var(--font-size-8);
+  --typography-display-lg-line-height:    var(--line-height-7);
+  --typography-display-lg-font-weight:    var(--font-weight-bold);
+
+  --typography-display-md-font-size:      var(--font-size-7);
+  --typography-display-md-line-height:    var(--line-height-6);
+  --typography-display-md-font-weight:    var(--font-weight-bold);
+
+  --typography-heading-lg-font-size:      var(--font-size-6);
+  --typography-heading-lg-line-height:    var(--line-height-5);
+  --typography-heading-lg-font-weight:    var(--font-weight-bold);
+
+  --typography-heading-md-font-size:      var(--font-size-4-5);
+  --typography-heading-md-line-height:    var(--line-height-4);
+  --typography-heading-md-font-weight:    var(--font-weight-bold);
+
+  --typography-heading-sm-font-size:      var(--font-size-4);
+  --typography-heading-sm-line-height:    var(--line-height-4);
+  --typography-heading-sm-font-weight:    var(--font-weight-bold);
+
+  --typography-body-lg-medium-font-size:  var(--font-size-5);
+  --typography-body-lg-medium-line-height:var(--line-height-4);
+  --typography-body-lg-medium-font-weight:var(--font-weight-medium);
+
+  --typography-body-md-bold-font-size:    var(--font-size-4);
+  --typography-body-md-bold-line-height:  var(--line-height-4);
+  --typography-body-md-bold-font-weight:  var(--font-weight-bold);
+
+  --typography-body-md-medium-font-size:  var(--font-size-4);
+  --typography-body-md-medium-line-height:var(--line-height-4);
+  --typography-body-md-medium-font-weight:var(--font-weight-medium);
+
+  --typography-body-md-font-size:         var(--font-size-4);
+  --typography-body-md-line-height:       var(--line-height-4);
+  --typography-body-md-font-weight:       var(--font-weight-regular);
+
+  --typography-body-sm-bold-font-size:    var(--font-size-3);
+  --typography-body-sm-bold-line-height:  var(--line-height-3);
+  --typography-body-sm-bold-font-weight:  var(--font-weight-bold);
+
+  --typography-body-sm-medium-font-size:  var(--font-size-3);
+  --typography-body-sm-medium-line-height:var(--line-height-3);
+  --typography-body-sm-medium-font-weight:var(--font-weight-medium);
+
+  --typography-body-sm-font-size:         var(--font-size-3);
+  --typography-body-sm-line-height:       var(--line-height-3);
+  --typography-body-sm-font-weight:       var(--font-weight-regular);
+
+  --typography-body-xs-medium-font-size:  var(--font-size-2);
+  --typography-body-xs-medium-line-height:var(--line-height-2);
+  --typography-body-xs-medium-font-weight:var(--font-weight-medium);
+  --typography-body-xs-medium-letter-spacing: var(--letter-spacing-1);
+
+  --typography-body-xs-font-size:         var(--font-size-2);
+  --typography-body-xs-line-height:       var(--line-height-2);
+  --typography-body-xs-font-weight:       var(--font-weight-regular);
+  --typography-body-xs-letter-spacing:    var(--letter-spacing-1);
+
+  --typography-page-heading-font-size:    var(--font-size-6);
+  --typography-page-heading-line-height:  var(--line-height-5);
+  --typography-page-heading-font-weight:  var(--font-weight-bold);
+
+  --typography-section-heading-font-size: var(--font-size-5);
+  --typography-section-heading-line-height:var(--line-height-4);
+  --typography-section-heading-font-weight:var(--font-weight-bold);
+
+  --typography-button-label-md-font-size: var(--font-size-4);
+  --typography-button-label-md-line-height:var(--line-height-4);
+  --typography-button-label-md-font-weight:var(--font-weight-medium);
+
+  --typography-button-label-lg-font-size: var(--font-size-5);
+  --typography-button-label-lg-line-height:var(--line-height-4);
+  --typography-button-label-lg-font-weight:var(--font-weight-medium);
+
+  --typography-amount-display-lg-font-size:  var(--font-size-8);
+  --typography-amount-display-lg-line-height:var(--line-height-7);
+  --typography-amount-display-lg-font-weight:var(--font-weight-bold);
+}
+
+/* Global Large (≥ 767px) — overrides display/heading + page/section + amount only */
+@media (min-width: 767px) {
+  :root {
+    --typography-display-lg-font-size:      var(--font-size-10);
+    --typography-display-lg-line-height:    var(--line-height-9);
+    --typography-display-lg-font-weight:    var(--font-weight-medium);
+
+    --typography-display-md-font-size:      var(--font-size-9);
+    --typography-display-md-line-height:    var(--line-height-8);
+    --typography-display-md-font-weight:    var(--font-weight-medium);
+
+    --typography-heading-lg-font-size:      var(--font-size-7);
+    --typography-heading-lg-line-height:    var(--line-height-6);
+
+    --typography-heading-md-font-size:      var(--font-size-6);
+    --typography-heading-md-line-height:    var(--line-height-5);
+
+    --typography-heading-sm-font-size:      var(--font-size-5);
+    --typography-heading-sm-line-height:    var(--line-height-4);
+
+    --typography-page-heading-font-size:    var(--font-size-7);
+    --typography-page-heading-line-height:  var(--line-height-6);
+
+    --typography-section-heading-font-size: var(--font-size-6);
+    --typography-section-heading-line-height:var(--line-height-5);
+
+    --typography-amount-display-lg-font-size:  var(--font-size-10);
+    --typography-amount-display-lg-line-height:var(--line-height-9);
+    --typography-amount-display-lg-font-weight:var(--font-weight-medium);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   SPACING, RADII, SHADOW — NON-THEMED
+   (sizes; colors are themed below)
+   ───────────────────────────────────────────── */
+:root {
+  /* Spacing — MMDS uses a 4px base */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Radii — MMDS product conventions */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Shadow size tokens — from shadow.css */
+  --shadow-size-xs: 0 2px 4px 0;
+  --shadow-size-sm: 0 2px 8px 0;
+  --shadow-size-md: 0 2px 16px 0;
+  --shadow-size-lg: 0 2px 40px 0;
+}
+
+/* ─────────────────────────────────────────────
+   LIGHT THEME (canonical default in MMDS)
+   Applied at :root so designs without a
+   theme attribute get light.
+   ───────────────────────────────────────────── */
+:root,
+[data-theme='light'],
+.light {
+  color-scheme: light;
+
+  /* Background */
+  --color-background-default:              var(--brand-colors-grey-grey000);
+  --color-background-default-hover:        var(--brand-colors-grey-grey050);
+  --color-background-default-pressed:      var(--brand-colors-grey-grey100);
+  --color-background-section:              #f5f6f8;
+  --color-background-subsection:           var(--brand-colors-grey-grey000);
+  --color-background-alternative:          var(--brand-colors-grey-grey050);
+  --color-background-alternative-hover:    #ebedf1;
+  --color-background-alternative-pressed:  #e1e4ea;
+  --color-background-muted:                rgba(60, 77, 157, 0.1);
+  --color-background-muted-hover:          rgba(60, 77, 157, 0.16);
+  --color-background-muted-pressed:        rgba(60, 77, 157, 0.22);
+  --color-background-hover:                rgba(60, 77, 157, 0.06);
+  --color-background-pressed:              rgba(60, 77, 157, 0.12);
+
+  /* Text */
+  --color-text-default:                    var(--brand-colors-grey-grey900);
+  --color-text-alternative:                var(--brand-colors-grey-grey500);
+  --color-text-muted:                      var(--brand-colors-grey-grey200);
+
+  /* Icon */
+  --color-icon-default:                    var(--brand-colors-grey-grey900);
+  --color-icon-default-hover:              #2a2b2c;
+  --color-icon-default-pressed:            #414243;
+  --color-icon-alternative:                var(--brand-colors-grey-grey500);
+  --color-icon-muted:                      var(--brand-colors-grey-grey200);
+  --color-icon-inverse:                    var(--brand-colors-grey-grey000);
+
+  /* Border */
+  --color-border-default:                  var(--brand-colors-grey-grey400);
+  --color-border-muted:                    #b4b4b566;
+
+  /* Overlay */
+  --color-overlay-default:                 #0a0d135c;
+  --color-overlay-alternative:             #0a0d1392;
+  --color-overlay-inverse:                 var(--brand-colors-grey-grey000);
+
+  /* Primary — MetaMask Classic Blue (#0376c9) */
+  --color-primary-default:                 var(--brand-colors-classic-blue-500);
+  --color-primary-default-hover:           #0269b3;
+  --color-primary-default-pressed:         #025e9f;
+  --color-primary-alternative:             var(--brand-colors-classic-blue-600);
+  --color-primary-muted:                   #0376c91a;
+  --color-primary-muted-hover:             #0376c926;
+  --color-primary-muted-pressed:           #0376c933;
+  --color-primary-inverse:                 var(--brand-colors-grey-grey000);
+
+  /* Error — red-500 */
+  --color-error-default:                   var(--brand-colors-red-red500);
+  --color-error-default-hover:             #ba313d;
+  --color-error-default-pressed:           #9a2832;
+  --color-error-alternative:               var(--brand-colors-red-red600);
+  --color-error-muted:                     #ca35421a;
+  --color-error-muted-hover:               #ca354226;
+  --color-error-muted-pressed:             #ca354233;
+  --color-error-inverse:                   var(--brand-colors-grey-grey000);
+
+  /* Warning — yellow-500 */
+  --color-warning-default:                 var(--brand-colors-yellow-yellow500);
+  --color-warning-default-hover:           #855500;
+  --color-warning-default-pressed:         #5c3b00;
+  --color-warning-muted:                   #9a63001a;
+  --color-warning-muted-hover:             #9a630026;
+  --color-warning-muted-pressed:           #9a630033;
+  --color-warning-inverse:                 var(--brand-colors-grey-grey000);
+
+  /* Success — lime-500 */
+  --color-success-default:                 var(--brand-colors-lime-lime500);
+  --color-success-default-hover:           #3d6c32;
+  --color-success-default-pressed:         #2d5025;
+  --color-success-muted:                   #457a391a;
+  --color-success-muted-hover:             #457a3926;
+  --color-success-muted-pressed:           #457a3933;
+  --color-success-inverse:                 var(--brand-colors-grey-grey000);
+
+  /* Info — = primary */
+  --color-info-default:                    var(--brand-colors-classic-blue-500);
+  --color-info-muted:                      #0376c91a;
+  --color-info-inverse:                    var(--brand-colors-grey-grey000);
+
+  /* Accents */
+  --color-accent01-light:                  var(--brand-colors-orange-orange200);
+  --color-accent01-normal:                 var(--brand-colors-orange-orange400);
+  --color-accent01-dark:                   var(--brand-colors-orange-orange700);
+  --color-accent02-light:                  var(--brand-colors-purple-purple100);
+  --color-accent02-normal:                 var(--brand-colors-purple-purple300);
+  --color-accent02-dark:                   var(--brand-colors-purple-purple800);
+  --color-accent03-light:                  var(--brand-colors-lime-lime050);
+  --color-accent03-normal:                 var(--brand-colors-lime-lime100);
+  --color-accent03-dark:                   var(--brand-colors-lime-lime700);
+  --color-accent04-light:                  var(--brand-colors-indigo-indigo100);
+  --color-accent04-normal:                 var(--brand-colors-indigo-indigo200);
+  --color-accent04-dark:                   var(--brand-colors-indigo-indigo800);
+
+  /* Flask */
+  --color-flask-default:                   var(--brand-colors-purple-purple500);
+  --color-flask-inverse:                   var(--brand-colors-grey-grey000);
+
+  /* Shadow colors */
+  --color-shadow-default:                  #0000001a;
+  --color-shadow-primary:                  #0376c933;
+  --color-shadow-error:                    #ca354266;
+}
+
+/* ─────────────────────────────────────────────
+   DARK THEME
+   ───────────────────────────────────────────── */
+[data-theme='dark'],
+.dark {
+  color-scheme: dark;
+
+  /* Background — black canvas palette
+     default #000000 · section #18181B · subsection #222226
+     elevated1 #0D0D0F · elevated2 #18181B · muted #E2E2FF 11% */
+  --color-background-default:              #000000;
+  --color-background-default-hover:        #18181B;
+  --color-background-default-pressed:      #222226;
+  --color-background-section:              #18181B;
+  --color-background-subsection:           #222226;
+  --color-background-alternative:          #0D0D0F;
+  --color-background-alternative-hover:    #18181B;
+  --color-background-alternative-pressed:  #222226;
+  --color-background-elevated1:            #0D0D0F;
+  --color-background-elevated2:            #18181B;
+  --color-background-muted:                #E2E2FF1C;
+  --color-background-muted-hover:          #E2E2FF29;
+  --color-background-muted-pressed:        #E2E2FF38;
+  --color-background-hover:                #E2E2FF1C;
+  --color-background-pressed:              #E2E2FF38;
+
+  /* Text */
+  --color-text-default:                    var(--brand-colors-grey-grey000);
+  --color-text-alternative:                var(--brand-colors-grey-grey300);
+  --color-text-muted:                      var(--brand-colors-grey-grey600);
+
+  /* Icon */
+  --color-icon-default:                    var(--brand-colors-grey-grey000);
+  --color-icon-default-hover:              #f0f0f0;
+  --color-icon-default-pressed:            #d0d0d0;
+  --color-icon-alternative:                var(--brand-colors-grey-grey300);
+  --color-icon-muted:                      var(--brand-colors-grey-grey600);
+  --color-icon-inverse:                    var(--brand-colors-grey-grey900);
+
+  /* Border */
+  --color-border-default:                  var(--brand-colors-grey-grey500);
+  --color-border-muted:                    #ffffff14;
+
+  /* Overlay */
+  --color-overlay-default:                 #030304b8;
+  --color-overlay-alternative:             #030304d6;
+  --color-overlay-inverse:                 var(--brand-colors-grey-grey000);
+
+  /* Primary — MetaMask Sky Blue (#43aefc) */
+  --color-primary-default:                 var(--brand-colors-sky-blue-400);
+  --color-primary-default-hover:           #5ebdfd;
+  --color-primary-default-pressed:         #7fcbfe;
+  --color-primary-alternative:             var(--brand-colors-sky-blue-300);
+  --color-primary-muted:                   #43aefc26;
+  --color-primary-muted-hover:             #43aefc33;
+  --color-primary-muted-pressed:           #43aefc40;
+  --color-primary-inverse:                 var(--brand-colors-grey-grey900);
+
+  /* Error — red-300 coral */
+  --color-error-default:                   var(--brand-colors-red-red300);
+  --color-error-default-hover:             #ff8a96;
+  --color-error-default-pressed:           #ffb2bb;
+  --color-error-alternative:               var(--brand-colors-red-red200);
+  --color-error-muted:                     #ff758426;
+  --color-error-muted-hover:               #ff758433;
+  --color-error-muted-pressed:             #ff758440;
+  --color-error-inverse:                   var(--brand-colors-grey-grey900);
+
+  /* Warning — yellow-200 amber */
+  --color-warning-default:                 var(--brand-colors-yellow-yellow200);
+  --color-warning-default-hover:           #f3be59;
+  --color-warning-default-pressed:         #f6cd7f;
+  --color-warning-muted:                   #f0b03426;
+  --color-warning-muted-hover:             #f0b03433;
+  --color-warning-muted-pressed:           #f0b03440;
+  --color-warning-inverse:                 var(--brand-colors-grey-grey900);
+
+  /* Success — lime-100 */
+  --color-success-default:                 var(--brand-colors-lime-lime100);
+  --color-success-default-hover:           #c9f570;
+  --color-success-default-pressed:         #d7f796;
+  --color-success-muted:                   #baf24a26;
+  --color-success-muted-hover:             #baf24a33;
+  --color-success-muted-pressed:           #baf24a40;
+  --color-success-inverse:                 var(--brand-colors-grey-grey900);
+
+  /* Info — = primary */
+  --color-info-default:                    var(--brand-colors-sky-blue-400);
+  --color-info-muted:                      #43aefc26;
+  --color-info-inverse:                    var(--brand-colors-grey-grey900);
+
+  /* Flask */
+  --color-flask-default:                   var(--brand-colors-purple-purple300);
+  --color-flask-inverse:                   var(--brand-colors-grey-grey900);
+
+  /* Shadow colors */
+  --color-shadow-default:                  #00000066;
+  --color-shadow-primary:                  #43aefc33;
+  --color-shadow-error:                    #ff758433;
+}
+
+/* ─────────────────────────────────────────────
+   BACKWARD-COMPAT ALIASES
+   Short semantic names that map onto MMDS tokens.
+   Prefer --color-* in new code.
+   ───────────────────────────────────────────── */
+:root, [data-theme], .light, .dark {
+  --bg-default:       var(--color-background-default);
+  --bg-section:       var(--color-background-section);
+  --bg-subsection:    var(--color-background-subsection);
+  --bg-alternative:   var(--color-background-alternative);
+  --bg-elevated1:     var(--color-background-elevated1, var(--color-background-alternative));
+  --bg-elevated2:     var(--color-background-elevated2, var(--color-background-section));
+  --bg-muted:         var(--color-background-muted);
+  --bg-hover:         var(--color-background-hover);
+  --bg-pressed:       var(--color-background-pressed);
+
+  --text-default:     var(--color-text-default);
+  --text-alternative: var(--color-text-alternative);
+  --text-muted:       var(--color-text-muted);
+
+  --icon-default:     var(--color-icon-default);
+  --icon-alternative: var(--color-icon-alternative);
+  --icon-muted:       var(--color-icon-muted);
+  --icon-inverse:     var(--color-icon-inverse);
+
+  --border-default:   var(--color-border-default);
+  --border-muted:     var(--color-border-muted);
+
+  --overlay-default:     var(--color-overlay-default);
+  --overlay-alternative: var(--color-overlay-alternative);
+
+  --primary-default:  var(--color-primary-default);
+  --primary-alt:      var(--color-primary-alternative);
+  --primary-muted:    var(--color-primary-muted);
+  --primary-inverse:  var(--color-primary-inverse);
+  --primary-hover:    var(--color-primary-default-hover);
+  --primary-pressed:  var(--color-primary-default-pressed);
+
+  --error-default:    var(--color-error-default);
+  --error-muted:      var(--color-error-muted);
+  --error-inverse:    var(--color-error-inverse);
+
+  --warning-default:  var(--color-warning-default);
+  --warning-muted:    var(--color-warning-muted);
+  --warning-inverse:  var(--color-warning-inverse);
+
+  --success-default:  var(--color-success-default);
+  --success-muted:    var(--color-success-muted);
+  --success-inverse:  var(--color-success-inverse);
+
+  --info-default:     var(--color-info-default);
+  --info-muted:       var(--color-info-muted);
+  --info-inverse:     var(--color-info-inverse);
+
+  --flask-default:    var(--color-flask-default);
+  --flask-inverse:    var(--color-flask-inverse);
+
+  /* Short aliases to brand palette */
+  --grey-000:  var(--brand-colors-grey-grey000);
+  --grey-025:  var(--brand-colors-grey-grey025);
+  --grey-050:  var(--brand-colors-grey-grey050);
+  --grey-100:  var(--brand-colors-grey-grey100);
+  --grey-200:  var(--brand-colors-grey-grey200);
+  --grey-300:  var(--brand-colors-grey-grey300);
+  --grey-400:  var(--brand-colors-grey-grey400);
+  --grey-500:  var(--brand-colors-grey-grey500);
+  --grey-600:  var(--brand-colors-grey-grey600);
+  --grey-700:  var(--brand-colors-grey-grey700);
+  --grey-800:  var(--brand-colors-grey-grey800);
+  --grey-900:  var(--brand-colors-grey-grey900);
+  --grey-1000: var(--brand-colors-grey-grey1000);
+
+  --blue-300:  var(--brand-colors-blue-blue300);
+  --blue-500:  var(--brand-colors-blue-blue500);
+
+  /* MetaMask brand primary shortcuts */
+  --mm-blue:        var(--brand-colors-classic-blue-500);  /* #0376c9 */
+  --mm-sky-blue:    var(--brand-colors-sky-blue-400);      /* #43aefc */
+  --red-300:   var(--brand-colors-red-red300);
+  --red-500:   var(--brand-colors-red-red500);
+  --lime-100:  var(--brand-colors-lime-lime100);
+  --lime-500:  var(--brand-colors-lime-lime500);
+  --yellow-200:var(--brand-colors-yellow-yellow200);
+  --yellow-500:var(--brand-colors-yellow-yellow500);
+  --orange-400:var(--brand-colors-orange-orange400);
+  --purple-300:var(--brand-colors-purple-purple300);
+  --purple-500:var(--brand-colors-purple-purple500);
+
+  /* Font & weight aliases */
+  --font-sans: var(--font-family-default);
+  --font-mono: var(--font-family-mono);
+  --font-accent: var(--font-family-accent);
+  --font-hero:   var(--font-family-hero);
+  --weight-regular: var(--font-weight-regular);
+  --weight-medium:  var(--font-weight-medium);
+  --weight-bold:    var(--font-weight-bold);
+
+  /* Pre-composed shadows (size × default color) */
+  --shadow-xs: var(--shadow-size-xs) var(--color-shadow-default);
+  --shadow-sm: var(--shadow-size-sm) var(--color-shadow-default);
+  --shadow-md: var(--shadow-size-md) var(--color-shadow-default);
+  --shadow-lg: var(--shadow-size-lg) var(--color-shadow-default);
+}
+
+/* ─────────────────────────────────────────────
+   BASE STYLES + TYPE UTILITIES
+   ───────────────────────────────────────────── */
+html { color-scheme: light dark; }
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-family-default);
+  background: var(--color-background-default);
+  color: var(--color-text-default);
+  font-size: var(--typography-body-md-font-size);
+  line-height: var(--typography-body-md-line-height);
+  font-weight: var(--typography-body-md-font-weight);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Type classes — map 1:1 onto MMDS typography scale */
+.t-display-lg      { font-family: var(--font-family-default); font-size: var(--typography-display-lg-font-size);      line-height: var(--typography-display-lg-line-height);      font-weight: var(--typography-display-lg-font-weight); }
+.t-display-md      { font-family: var(--font-family-default); font-size: var(--typography-display-md-font-size);      line-height: var(--typography-display-md-line-height);      font-weight: var(--typography-display-md-font-weight); }
+.t-heading-lg, h1  { font-family: var(--font-family-default); font-size: var(--typography-heading-lg-font-size);      line-height: var(--typography-heading-lg-line-height);      font-weight: var(--typography-heading-lg-font-weight); margin: 0; }
+.t-heading-md, h2  { font-family: var(--font-family-default); font-size: var(--typography-heading-md-font-size);      line-height: var(--typography-heading-md-line-height);      font-weight: var(--typography-heading-md-font-weight); margin: 0; }
+.t-heading-sm, h3  { font-family: var(--font-family-default); font-size: var(--typography-heading-sm-font-size);      line-height: var(--typography-heading-sm-line-height);      font-weight: var(--typography-heading-sm-font-weight); margin: 0; }
+
+.t-body-lg-medium  { font-size: var(--typography-body-lg-medium-font-size); line-height: var(--typography-body-lg-medium-line-height); font-weight: var(--typography-body-lg-medium-font-weight); }
+.t-body-md, p      { font-size: var(--typography-body-md-font-size); line-height: var(--typography-body-md-line-height); font-weight: var(--typography-body-md-font-weight); margin: 0; }
+.t-body-md-medium  { font-size: var(--typography-body-md-medium-font-size); line-height: var(--typography-body-md-medium-line-height); font-weight: var(--typography-body-md-medium-font-weight); }
+.t-body-md-bold    { font-size: var(--typography-body-md-bold-font-size); line-height: var(--typography-body-md-bold-line-height); font-weight: var(--typography-body-md-bold-font-weight); }
+.t-body-sm         { font-size: var(--typography-body-sm-font-size); line-height: var(--typography-body-sm-line-height); font-weight: var(--typography-body-sm-font-weight); }
+.t-body-sm-medium  { font-size: var(--typography-body-sm-medium-font-size); line-height: var(--typography-body-sm-medium-line-height); font-weight: var(--typography-body-sm-medium-font-weight); }
+.t-body-sm-bold    { font-size: var(--typography-body-sm-bold-font-size); line-height: var(--typography-body-sm-bold-line-height); font-weight: var(--typography-body-sm-bold-font-weight); }
+.t-body-xs         { font-size: var(--typography-body-xs-font-size); line-height: var(--typography-body-xs-line-height); font-weight: var(--typography-body-xs-font-weight); letter-spacing: var(--typography-body-xs-letter-spacing); }
+.t-body-xs-medium  { font-size: var(--typography-body-xs-medium-font-size); line-height: var(--typography-body-xs-medium-line-height); font-weight: var(--typography-body-xs-medium-font-weight); letter-spacing: var(--typography-body-xs-medium-letter-spacing); }
+
+.t-page-heading    { font-size: var(--typography-page-heading-font-size);    line-height: var(--typography-page-heading-line-height);    font-weight: var(--typography-page-heading-font-weight); }
+.t-section-heading { font-size: var(--typography-section-heading-font-size); line-height: var(--typography-section-heading-line-height); font-weight: var(--typography-section-heading-font-weight); }
+.t-button-label-md { font-size: var(--typography-button-label-md-font-size); line-height: var(--typography-button-label-md-line-height); font-weight: var(--typography-button-label-md-font-weight); }
+.t-button-label-lg { font-size: var(--typography-button-label-lg-font-size); line-height: var(--typography-button-label-lg-line-height); font-weight: var(--typography-button-label-lg-font-weight); }
+.t-amount-display-lg { font-size: var(--typography-amount-display-lg-font-size); line-height: var(--typography-amount-display-lg-line-height); font-weight: var(--typography-amount-display-lg-font-weight); }
+
+/* Mono / inline code */
+.t-mono { font-family: var(--font-family-mono); }
+code    { font-family: var(--font-family-mono); font-size: 0.9em; background: var(--color-background-section); padding: 2px 6px; border-radius: var(--radius-sm); }
+
+/* Weight + color helpers (legacy) */
+.w-regular { font-weight: var(--font-weight-regular); }
+.w-medium  { font-weight: var(--font-weight-medium); }
+.w-bold    { font-weight: var(--font-weight-bold); }
+
+.c-default     { color: var(--color-text-default); }
+.c-alternative { color: var(--color-text-alternative); }
+.c-muted       { color: var(--color-text-muted); }
+.c-primary     { color: var(--color-primary-default); }
+.c-error       { color: var(--color-error-default); }
+.c-success     { color: var(--color-success-default); }
+.c-warning     { color: var(--color-warning-default); }
