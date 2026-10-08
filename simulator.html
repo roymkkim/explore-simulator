@@ -25,7 +25,7 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    background: var(--color-background-alternative);
+    background: #000;
     color: var(--color-text-default);
     overflow: hidden;
   }
@@ -414,9 +414,7 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(67,174,252,0.04), transparent 60%),
-      var(--color-background-alternative);
+    background: #000;
     position: relative;
     overflow: hidden;
   }
@@ -493,21 +491,31 @@
     align-items: center;
     justify-content: center;
     overflow: auto;
-    border-top: 1px solid var(--color-border-muted);
+    border-top: none;
+    background: #000;
   }
   /* When the gallery is in the canvas, don't flex-center — let it scroll naturally. */
   .stage-canvas:has(.gallery-root) {
     display: block;
   }
-  .stage-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--color-border-muted) 1px, transparent 1px),
-      linear-gradient(90deg, var(--color-border-muted) 1px, transparent 1px);
-    background-size: 32px 32px;
-    opacity: 0.25;
-    pointer-events: none;
+  .stage-grid { display: none; }
+  .phone-chrome {
+    padding: 12px;
+    border-radius: 60px;
+    background: linear-gradient(165deg, #5a5a5e 0%, #2a2a2e 36%, #111113 72%, #0a0a0a 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.22),
+      inset 0 -1px 0 rgba(0,0,0,0.55),
+      0 0 0 1px #2c2c30,
+      0 28px 80px rgba(0,0,0,0.7);
+  }
+  .phone-chrome > * {
+    border-radius: 48px;
+    overflow: hidden;
+  }
+  .phone-chrome .bare-phone {
+    border-radius: 48px;
+    box-shadow: none;
   }
   .stage-meta {
     position: absolute;
@@ -644,15 +652,15 @@
 <div id="root"></div>
 
 <!-- Components, in order of dependency -->
-<script type="text/babel" src="frames/ios-frame.jsx"></script>
+<script type="text/babel" src="frames/ios-frame.jsx?v=bezel"></script>
 <script type="text/babel" src="src/store.jsx?v=embed"></script>
 <script type="text/babel" src="src/token-logos.jsx"></script>
 <script type="text/babel" src="src/explore-screen.jsx?v=search-sites"></script>
 <script type="text/babel" src="src/mvp-screen.jsx"></script>
 <script type="text/babel" src="src/prod-screen.jsx?v=search-sites"></script>
-<script type="text/babel" src="src/simulator.jsx?v=phone-black"></script>
+<script type="text/babel" src="src/simulator.jsx?v=phone-chrome"></script>
 <script type="text/babel" src="src/components-gallery.jsx"></script>
 <script type="text/babel" src="src/panel.jsx"></script>
-<script type="text/babel" src="src/app.jsx?v=embed"></script>
+<script type="text/babel" src="src/app.jsx?v=stage-black"></script>
 </body>
 </html>

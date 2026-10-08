@@ -65,7 +65,6 @@ function App() {
     <>
       <Panel state={state} setState={setState} reset={reset} setTabFlag={setTabFlag} setExperiment={setExperiment} />
       <div className="stage">
-        <div className="stage-grid" />
         <StageTabs value={stageView} onChange={(v) => setState({ stageView: v })} />
         <div className="stage-canvas">
           {stageView === 'ui'

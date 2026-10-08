@@ -1,5 +1,10 @@
 // simulator.jsx — Wraps ExploreScreen in either a bare 393x852 box or iOS chrome
 
+function wrapPhone(node, embed) {
+  if (embed) return node;
+  return <div className="phone-chrome">{node}</div>;
+}
+
 function Simulator({ state, setState }) {
   const W = 393, H = 852;
 
@@ -8,7 +13,7 @@ function Simulator({ state, setState }) {
   const bareInset = state.embed ? (state.embedInset || 0) : 0;
 
   if (!state.showChrome) {
-    return (
+    return wrapPhone(
       <div
         className={`bare-phone ${themeClass}`}
         data-theme={state.theme}
@@ -16,7 +21,8 @@ function Simulator({ state, setState }) {
         style={{ width: W, height: H }}
       >
         <ExploreScreen state={state} setState={setState} topInset={bareInset} />
-      </div>
+      </div>,
+      state.embed
     );
   }
 
@@ -25,7 +31,7 @@ function Simulator({ state, setState }) {
   // flex-1 area under the status bar.
   // We override the status bar to be transparent-over-dark content by using
   // dark={true} status bar when theme is dark, else light.
-  return (
+  return wrapPhone(
     <div
       data-theme={state.theme}
       className={themeClass}
@@ -47,7 +53,8 @@ function Simulator({ state, setState }) {
           <ExploreScreen state={state} setState={setState} topInset={62} />
         </div>
       </IOSDevice>
-    </div>
+    </div>,
+    state.embed
   );
 }
 
