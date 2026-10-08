@@ -92,7 +92,13 @@ const PROD_SITE_POPULAR = [
   { name: 'MetaMask Portfolio', host: 'portfolio.metamask.io', kind: 'fox' },
   { name: 'Ondo Global Markets', host: 'metamask.io', kind: 'ondo' },
   { name: 'MetaLend', host: 'metalend.tech', kind: 'metalend' },
+  { name: 'Turtle', host: 'appturtle.xyz', kind: 'turtle' },
+  { name: 'Everstake', host: 'metamask.everstake.one', kind: 'everstake' },
+  { name: 'Galxe', host: 'galxe.com', kind: 'galxe' },
 ];
+
+const PROD_SEARCH_FILTERS = ['All', 'Crypto', 'Perps', 'Stocks', 'Prediction', 'Sites'];
+const PROD_CRYPTO_FILTERS = ['All', 'Crypto', 'Perps', 'Stocks', 'Prediction'];
 
 const PROD_RWA_PERPS = {
   Stocks: [
@@ -233,6 +239,46 @@ function ProdBrandMark({ kind, size = 40 }) {
         <svg width={size * 0.55} height={size * 0.55} viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="9" fill="none" stroke="#fff" strokeWidth="2" />
           <circle cx="12" cy="12" r="4.5" fill="none" stroke="#fff" strokeWidth="2" />
+        </svg>
+      </div>
+    );
+  }
+  if (kind === 'turtle') {
+    return (
+      <div style={{
+        width: size, height: size, borderRadius: 999, background: '#0B3D2E',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        flex: `0 0 ${size}px`,
+      }}>
+        <svg width={size * 0.56} height={size * 0.56} viewBox="0 0 24 24" aria-hidden="true">
+          <ellipse cx="12" cy="13" rx="7" ry="5.5" fill="#2EE6A6" />
+          <circle cx="17.5" cy="9" r="3" fill="#2EE6A6" />
+        </svg>
+      </div>
+    );
+  }
+  if (kind === 'everstake') {
+    return (
+      <div style={{
+        width: size, height: size, borderRadius: 999, background: '#F5C400',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        flex: `0 0 ${size}px`,
+      }}>
+        <svg width={size * 0.5} height={size * 0.5} viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2 21 7.5v9L12 22 3 16.5v-9L12 2Z" fill="#111" />
+        </svg>
+      </div>
+    );
+  }
+  if (kind === 'galxe') {
+    return (
+      <div style={{
+        width: size, height: size, borderRadius: 999, background: '#111',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        flex: `0 0 ${size}px`,
+      }}>
+        <svg width={size * 0.5} height={size * 0.5} viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 16c4-1 7-4 8-8 1 4 4 7 8 8-4 1-7 4-8 8-1-4-4-7-8-8Z" fill="#fff" />
         </svg>
       </div>
     );
@@ -548,7 +594,7 @@ function ProdHeader({
         transition: `max-height ${ease}, opacity 220ms ease, transform ${ease}, padding ${ease}`,
         pointerEvents: searchOpen ? 'auto' : 'none',
       }}>
-        <FilterBar filters={['All', 'Crypto', 'Perps', 'Stocks', 'Prediction'].map((label) => ({
+        <FilterBar filters={PROD_SEARCH_FILTERS.map((label) => ({
           label, hideChevron: true,
           active: searchFilter === label,
           onClick: () => onSearchFilter && onSearchFilter(label),
@@ -900,21 +946,23 @@ function ProdPlaceholder({ tab }) {
   );
 }
 
-function ProdDiscoverResults({ filter, onFilter, query = '', showFilters = true }) {
+function ProdDiscoverResults({ filter, onFilter, query = '', showFilters = true, filters = PROD_CRYPTO_FILTERS }) {
   const q = query.trim().toLowerCase();
   const showCrypto = filter === 'All' || filter === 'Crypto';
   const showPerps = filter === 'All' || filter === 'Perps';
   const showStocks = filter === 'Stocks';
   const showPred = filter === 'Prediction';
+  const showSites = filter === 'Sites';
   const match = (name) => !q || String(name).toLowerCase().includes(q);
   const crypto = PROD_CRYPTO_ASSETS.filter((s) => match(s.name));
   const perps = PROD_CRYPTO_PERPS.filter((s) => match(s.name));
   const stocks = PROD_STOCKS.filter((s) => match(s.name));
+  const sites = PROD_SITE_POPULAR.filter((s) => match(s.name) || match(s.host));
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', padding: showFilters ? '32px 0 8px' : '8px 0 8px', gap: 16 }}>
       {showFilters && (
-        <FilterBar filters={['All', 'Crypto', 'Perps', 'Stocks', 'Prediction'].map((label) => ({
+        <FilterBar filters={filters.map((label) => ({
           label, hideChevron: true,
           active: filter === label,
           onClick: () => onFilter(label),
@@ -946,6 +994,11 @@ function ProdDiscoverResults({ filter, onFilter, query = '', showFilters = true 
             fontSize: 14, fontWeight: 500, lineHeight: '22px',
             color: 'var(--color-text-alternative)',
           }}>No prediction markets in this view.</div>
+        </section>
+      )}
+      {showSites && (
+        <section>
+          {sites.map((s) => <ProdPopularRow key={s.name} site={s} />)}
         </section>
       )}
     </div>
@@ -1077,4 +1130,4 @@ function ProdSections({ state, setState }) {
   return <ProdPlaceholder tab={tab} />;
 }
 
-Object.assign(window, { ProdSections, ProdHeader, ProdFooter, ProdDiscoverResults, PROD_TABS });
+Object.assign(window, { ProdSections, ProdHeader, ProdFooter, ProdDiscoverResults, PROD_TABS, PROD_SEARCH_FILTERS });

@@ -1648,14 +1648,21 @@ function FilterBar({ filters, size = 'Sm' }) {
       overflowX: 'auto', scrollbarWidth: 'none',
     }}>
       {filters.map((f, i) => (
-        <FilterButton
+        <span
           key={i}
-          label={f.label}
-          onClick={f.onClick}
-          size={f.size || size}
-          variant={f.active ? 'primary' : 'secondary'}
-          isSelected
-        />
+          ref={(el) => {
+            if (f.active && el) el.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+          }}
+          style={{ display: 'inline-flex', flex: '0 0 auto' }}
+        >
+          <FilterButton
+            label={f.label}
+            onClick={f.onClick}
+            size={f.size || size}
+            variant={f.active ? 'primary' : 'secondary'}
+            isSelected
+          />
+        </span>
       ))}
     </div>
   );
@@ -2139,9 +2146,9 @@ function ExploreScreen({ state, setState, topInset = 0 }) {
           searchOpen={searchOpen}
           searchQuery={state.prodSearchQuery || ''}
           onSearchQuery={(v) => setState({ prodSearchQuery: v })}
-          onSearchOpen={() => setState({ prodSearchOpen: true, prodSearchFilter: state.prodSearchFilter || 'All' })}
+          onSearchOpen={() => setState({ prodSearchOpen: true, prodSearchFilter: 'Sites' })}
           onSearchCancel={() => setState({ prodSearchOpen: false, prodSearchQuery: '' })}
-          searchFilter={state.prodSearchFilter || 'All'}
+          searchFilter={state.prodSearchFilter || 'Sites'}
           onSearchFilter={(v) => setState({ prodSearchFilter: v })}
         />
       ) : (
@@ -2175,10 +2182,11 @@ function ExploreScreen({ state, setState, topInset = 0 }) {
         searchOpen
           ? (
             <ProdDiscoverResults
-              filter={state.prodSearchFilter || 'All'}
+              filter={state.prodSearchFilter || 'Sites'}
               onFilter={(v) => setState({ prodSearchFilter: v })}
               query={state.prodSearchQuery || ''}
               showFilters={false}
+              filters={PROD_SEARCH_FILTERS}
             />
           )
           : <ProdSections state={state} setState={setState} />
